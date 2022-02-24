@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-nli0dc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-nli0dc
+  namespace: my-nginx-nli0dc
+  labels:
+    name: nginx-nli0dc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-nli0dc
+  template:
+    metadata:
+      namespace: my-nginx-nli0dc
+      labels:
+        name: nginx-nli0dc
+    spec:
+      containers:
+      - name: nginx-nli0dc
+        image: nginx
+        ports:
+        - containerPort: 80
+
